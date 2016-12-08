@@ -12,10 +12,8 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
-import ttyy.com.coder.scanner_git.core.CodeUtil;
 import ttyy.com.coder.util.QRCodeUtil;
 
 /**
@@ -77,8 +75,6 @@ public class ScanRectView extends View {
     // 单元刷新delay时延
     int mAnimDelayTime;
 
-    // 是否显示提示信息文本
-    boolean mIsShowTipTextAsSingleLine = true;
     // 提示信息文本
     String mTipText;
     // 提示文本颜色
@@ -299,6 +295,19 @@ public class ScanRectView extends View {
         postInvalidateDelayed(mAnimDelayTime, mFrameRect.left, mFrameRect.top, mFrameRect.right, mFrameRect.bottom);
     }
 
+    /**
+     * 设置提示信息
+     * @param text
+     */
+    public void setTipText(String text){
+        mTipText = text;
+        postInvalidate();
+    }
+
+    /**
+     * 设置是否是扫描条形码
+     * @param value
+     */
     public void setIsBarCode(boolean value) {
         mIsBarCode = value;
 
