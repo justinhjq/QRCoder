@@ -2,7 +2,7 @@
 基于zxing 3.3的二维码生成，二维码解析
 
 ## 二维码扫描
-* 二维码扫描参考 BGAQRCode-Android：https://github.com/justinhjq?tab=stars
+* 二维码扫描参考 BGAQRCode-Android：https://github.com/bingoogolapple/BGAQRCode-Android
 * DecodeScannerView 集成入Layout文件
 * ScannerParentView.DecodeStatusListener 二维码扫描的结果回调
 ```Java
