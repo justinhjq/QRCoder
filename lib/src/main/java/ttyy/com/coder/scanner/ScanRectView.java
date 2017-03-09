@@ -223,17 +223,17 @@ public class ScanRectView extends View {
         mPaint.setStrokeWidth(mCornorSize);
         mPaint.setColor(mCornorColor);
 
-        canvas.drawLine(mFrameRect.left - mHalfCornorSize, mFrameRect.top, mFrameRect.left - mHalfCornorSize + mCornorLength, mFrameRect.top, mPaint);
-        canvas.drawLine(mFrameRect.left, mFrameRect.top - mHalfCornorSize, mFrameRect.left, mFrameRect.top - mHalfCornorSize + mCornorLength, mPaint);
+        canvas.drawLine(mFrameRect.left - mHalfCornorSize, mFrameRect.top, mFrameRect.left + mCornorLength, mFrameRect.top, mPaint);
+        canvas.drawLine(mFrameRect.left, mFrameRect.top - mHalfCornorSize, mFrameRect.left, mFrameRect.top + mCornorLength, mPaint);
 
-        canvas.drawLine(mFrameRect.right + mHalfCornorSize, mFrameRect.top, mFrameRect.right + mHalfCornorSize - mCornorLength, mFrameRect.top, mPaint);
-        canvas.drawLine(mFrameRect.right, mFrameRect.top - mHalfCornorSize, mFrameRect.right, mFrameRect.top - mHalfCornorSize + mCornorLength, mPaint);
+        canvas.drawLine(mFrameRect.right + mHalfCornorSize, mFrameRect.top, mFrameRect.right - mCornorLength, mFrameRect.top, mPaint);
+        canvas.drawLine(mFrameRect.right, mFrameRect.top - mHalfCornorSize, mFrameRect.right, mFrameRect.top + mCornorLength, mPaint);
 
-        canvas.drawLine(mFrameRect.left - mHalfCornorSize, mFrameRect.bottom, mFrameRect.left - mHalfCornorSize + mCornorLength, mFrameRect.bottom, mPaint);
-        canvas.drawLine(mFrameRect.left, mFrameRect.bottom - mHalfCornorSize, mFrameRect.left, mFrameRect.bottom - mHalfCornorSize - mCornorLength, mPaint);
+        canvas.drawLine(mFrameRect.left - mHalfCornorSize, mFrameRect.bottom, mFrameRect.left + mCornorLength, mFrameRect.bottom, mPaint);
+        canvas.drawLine(mFrameRect.left, mFrameRect.bottom - mHalfCornorSize, mFrameRect.left, mFrameRect.bottom - mCornorLength, mPaint);
 
-        canvas.drawLine(mFrameRect.right + mHalfCornorSize, mFrameRect.bottom, mFrameRect.right + mHalfCornorSize - mCornorLength, mFrameRect.bottom, mPaint);
-        canvas.drawLine(mFrameRect.right, mFrameRect.bottom + mHalfCornorSize, mFrameRect.right, mFrameRect.bottom + mHalfCornorSize - mCornorLength, mPaint);
+        canvas.drawLine(mFrameRect.right + mHalfCornorSize, mFrameRect.bottom, mFrameRect.right - mCornorLength, mFrameRect.bottom, mPaint);
+        canvas.drawLine(mFrameRect.right, mFrameRect.bottom + mHalfCornorSize, mFrameRect.right, mFrameRect.bottom - mCornorLength, mPaint);
 
     }
 
@@ -333,5 +333,50 @@ public class ScanRectView extends View {
 
         calculateBoxFrameRect();
         postInvalidate();
+    }
+
+    public ScanRectView setBorderColor(int color){
+        mBorderColor = color;
+        return this;
+    }
+
+    public ScanRectView setCornorColor(int color){
+        mCornorColor = color;
+        return this;
+    }
+
+    public ScanRectView setScanLineColor(int color){
+        mScanLineColor = color;
+        return this;
+    }
+
+    public ScanRectView setQRCodeBoxHeight(int height){
+        mQRCodeBoxHeight = height;
+        return this;
+    }
+
+    public ScanRectView setQRCodeBoxTopOffset(int offset){
+        mQRCodeTopOffset = offset;
+        return this;
+    }
+
+    public ScanRectView setBoxWidth(int width){
+        mBoxWidth =width;
+        return this;
+    }
+
+    public ScanRectView setBarCodeBoxHeight(int height){
+        mBarBoxBoxHeight = height;
+        return this;
+    }
+
+    public ScanRectView setBarCodeBoxTopOffset(int offset){
+        mBarBoxTopOffset = offset;
+        return this;
+    }
+
+    public ScanRectView resetCodeBoxInfo(){
+        calculateBoxFrameRect();
+        return this;
     }
 }
