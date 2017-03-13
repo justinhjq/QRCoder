@@ -248,10 +248,27 @@ public class ScanRectView extends View {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(mTipBackgroundColor);
 
-        canvas.drawRoundRect(new RectF(mFrameRect.left, mFrameRect.top - mTipTextMargin - mTipTextSl.getHeight() - mTipBackgroundRadius * 2, mFrameRect.right, mFrameRect.top - mTipTextMargin), mTipBackgroundRadius, mTipBackgroundRadius, mPaint);
+        int mTipTextSlWidth = mTipTextSl.getWidth();
+        int left = 0;
+        int right = 0;
+        int depth = 0;
+        int textLeft = 0;
+        if(mFrameRect.right - mFrameRect.left > mTipTextSlWidth){
+            left = mFrameRect.left;
+            right = mFrameRect.right;
+            depth = mTipBackgroundRadius;
+            textLeft = left;
+        }else {
+            depth = (mTipTextSlWidth - (mFrameRect.right - mFrameRect.left)) / 2;
+            left = mFrameRect.left - depth;
+            right = mFrameRect.right + depth;
+            textLeft = left;
+        }
+        canvas.drawRoundRect(new RectF(left - mTipBackgroundRadius, mFrameRect.top - mTipTextMargin - mTipTextSl.getHeight() - mTipBackgroundRadius * 2, right + mTipBackgroundRadius, mFrameRect.top - mTipTextMargin), mTipBackgroundRadius, mTipBackgroundRadius, mPaint);
 
         canvas.save();
-        canvas.translate(mFrameRect.left + mTipBackgroundRadius, mFrameRect.top - mTipTextMargin - mTipTextSl.getHeight() - mTipBackgroundRadius);
+
+        canvas.translate(textLeft, mFrameRect.top - mTipTextMargin - mTipTextSl.getHeight() - mTipBackgroundRadius);
         mTipTextSl.draw(canvas);
         canvas.restore();
 
