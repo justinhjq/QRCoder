@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -72,14 +73,16 @@ public abstract class ScannerParentView extends FrameLayout implements DecodeDat
                             try {
                                 mDecodeStatusListener.onDecodeSuccess(result);
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                Log.w("Scanner", "Decode Error "+e.getMessage());
+                                mCamera.setOneShotPreviewCallback(ScannerParentView.this);
                             }
                         } else {
                             try {
                                 // 没有解析到数据，继续取Camera的预览
                                 mCamera.setOneShotPreviewCallback(ScannerParentView.this);
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                Log.w("Scanner", "setOneShotPreviewCallback Error "+e.getMessage());
+                                mCamera.setOneShotPreviewCallback(ScannerParentView.this);
                             }
                         }
                     }
