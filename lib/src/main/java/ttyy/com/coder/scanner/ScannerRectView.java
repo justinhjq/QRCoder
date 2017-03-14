@@ -125,7 +125,7 @@ public class ScannerRectView extends View {
 
         drawScanRect(canvas);
 
-        if(mEnableTips && TextUtils.isEmpty(mTipsText)){
+        if(mEnableTips && !TextUtils.isEmpty(mTipsText)){
             drawTipsText(canvas);
         }
 
@@ -282,7 +282,7 @@ public class ScannerRectView extends View {
             mScanLineTopOffset = mScanRectBoxFrame.top;
         }
 
-        postInvalidateDelayed(mRefreshDelayMillions, mScanRectBoxFrame.left, mScanLineTopOffset, mScanRectBoxFrame.right, mScanRectBoxFrame.bottom);
+        postInvalidateDelayed(mRefreshDelayMillions, mScanRectBoxFrame.left, mScanRectBoxFrame.top, mScanRectBoxFrame.right, mScanRectBoxFrame.bottom);
     }
 
     public ScannerRectView setBoxWidth(int width){

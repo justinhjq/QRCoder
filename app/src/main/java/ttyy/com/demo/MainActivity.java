@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity implements DecodeCallback{
         qrcodeview = (QRCodeScannerView) findViewById(R.id.qrcodeview);
         qrcodeview.setDecodeCallback(this);
 
+        qrcodeview.startDecode();
+
     }
 
     @Override
@@ -41,13 +43,14 @@ public class MainActivity extends AppCompatActivity implements DecodeCallback{
 
     private void vibrate() {
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        vibrator.vibrate(200);
+        vibrator.vibrate(500);
     }
 
     @Override
     public void onDecodeSuccess(String data) {
         Log.e("Test", "data "+data);
         vibrate();
+        qrcodeview.startDecode();
     }
 
     @Override
