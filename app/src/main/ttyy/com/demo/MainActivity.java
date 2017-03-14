@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Window;
 
 import ttyy.com.coder.scanner.DecodeScannerView;
-import ttyy.com.coder.scanner.ScannerParentView;
 
 public class MainActivity extends AppCompatActivity implements ScannerParentView.DecodeStatusListener{
 

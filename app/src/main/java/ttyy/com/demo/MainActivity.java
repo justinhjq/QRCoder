@@ -1,18 +1,17 @@
 package ttyy.com.demo;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 
-import ttyy.com.coder.scanner.DecodeScannerView;
-import ttyy.com.coder.scanner.ScannerParentView;
+import ttyy.com.coder.scanner.QRCodeScannerView;
+import ttyy.com.coder.scanner.decode.DecodeCallback;
 
-public class MainActivity extends AppCompatActivity implements ScannerParentView.DecodeStatusListener{
+public class MainActivity extends AppCompatActivity implements DecodeCallback{
 
-    ScannerParentView qrcodeview;
+    QRCodeScannerView qrcodeview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,36 +19,24 @@ public class MainActivity extends AppCompatActivity implements ScannerParentView
         getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        qrcodeview = (DecodeScannerView) findViewById(R.id.qrcodeview);
-        qrcodeview.onCreate();
+        qrcodeview = (QRCodeScannerView) findViewById(R.id.qrcodeview);
+        qrcodeview.setDecodeCallback(this);
 
-        qrcodeview.setDecodeStatusListener(this);
-
-        qrcodeview.getScanRectView().setBorderColor(Color.BLUE)// 边框颜色
-                .setCornorColor(Color.RED) // 四个角颜色
-                .setScanLineColor(Color.GREEN) // 扫描线颜色
-                .setQRCodeBoxHeight(500) // 二维码框 高度 px
-                .setBoxWidth(300) // 二维码框 宽度 px
-                .setQRCodeBoxTopOffset(50)// 二维码 距离上边距 px
-                .resetCodeBoxInfo(); // 设置完新信息，通知view重新计算框的位置信息
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        qrcodeview.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        qrcodeview.onStop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        qrcodeview.onDestroy();
     }
 
     private void vibrate() {
@@ -64,7 +51,8 @@ public class MainActivity extends AppCompatActivity implements ScannerParentView
     }
 
     @Override
-    public void onDecodeError(Exception e) {
-        Log.d("Test", "e "+e.getMessage());
+    public void onDecodeFail(String message) {
+
     }
+
 }

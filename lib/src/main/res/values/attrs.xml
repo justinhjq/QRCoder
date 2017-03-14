@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ScannerRectView">
+
+        <attr name="boxWidth" format="reference|dimension"></attr>
+        <attr name="boxHeight" format="reference|dimension"></attr>
+        <attr name="boxBorderWidth" format="reference|dimension"></attr>
+        <attr name="boxCornorWidth" format="reference|dimension"></attr>
+        <attr name="boxCornorBorderWidth" format="reference|dimension"></attr>
+        <attr name="boxBorderColor" format="reference|color"></attr>
+        <attr name="boxCornorColor" format="reference|color"></attr>
+        <attr name="maskColor" format="reference|color"></attr>
+        <attr name="scanLineColor" format="reference|color"></attr>
+        <attr name="tipsTextColor" format="reference|color"></attr>
+        <attr name="tipsBackColor" format="reference|color"></attr>
+        <attr name="tipsText" format="reference|string"></attr>
+
+    </declare-styleable>
+
+</resources>
