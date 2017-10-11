@@ -62,6 +62,7 @@ public class QRCodeScannerView extends FrameLayout implements SurfaceHolder.Call
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        mCameraManager.release();
         mCameraManager = null;
     }
 
