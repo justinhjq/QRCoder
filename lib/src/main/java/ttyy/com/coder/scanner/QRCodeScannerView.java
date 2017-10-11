@@ -27,6 +27,8 @@ public class QRCodeScannerView extends FrameLayout implements SurfaceHolder.Call
 
     JinCameraManager mCameraManager;
 
+    DecodeCallback mDecodeCallbackInst;
+
     public QRCodeScannerView( Context context) {
         this(context, null);
     }
@@ -57,6 +59,7 @@ public class QRCodeScannerView extends FrameLayout implements SurfaceHolder.Call
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mCameraManager = JinCameraManager.get(getContext());
+        mCameraManager.getCameraPreviewCallback().setDecodeCallback(mDecodeCallbackInst);
     }
 
     @Override
@@ -67,6 +70,7 @@ public class QRCodeScannerView extends FrameLayout implements SurfaceHolder.Call
     }
 
     public QRCodeScannerView setDecodeCallback(DecodeCallback callback){
+        mDecodeCallbackInst = callback;
         mCameraManager.getCameraPreviewCallback().setDecodeCallback(callback);
         return this;
     }
@@ -93,6 +97,7 @@ public class QRCodeScannerView extends FrameLayout implements SurfaceHolder.Call
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         try {
+            setDecodeCallback(mDecodeCallbackInst);
             mCameraManager.openDriver(holder);
             mCameraManager.startPreview();
         } catch (IOException e) {
