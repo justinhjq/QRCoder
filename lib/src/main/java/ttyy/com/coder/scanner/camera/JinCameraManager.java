@@ -93,6 +93,11 @@ public final class JinCameraManager {
         mHandler = new Handler(Looper.getMainLooper());
     }
 
+    public void release(){
+        stopPreview();
+        closeDriver();
+    }
+
     /**
      * Opens the mCamera driver and initializes the hardware parameters.
      *
@@ -237,7 +242,9 @@ public final class JinCameraManager {
             mCamera.autoFocus(mAutoFocusCallback);
         }else {
             mHandler.removeCallbacksAndMessages(null);
-            mCamera.autoFocus(null);
+            if(mCamera != null){
+                mCamera.autoFocus(null);
+            }
         }
     }
 }
